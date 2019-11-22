@@ -15,8 +15,8 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("fr.campus.listeModelesVoitures.web"))
-                .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("fr.campus.car.client.web"))
+                .paths(PathSelectors.regex("/car.*"))
                 .build();
     }
 }

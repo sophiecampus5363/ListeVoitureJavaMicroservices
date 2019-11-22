@@ -17,35 +17,28 @@ public class CarController {
     //Récupérer la liste des voitures
     @RequestMapping(value="/car", method= RequestMethod.GET)
     public List<Car> listeVoitures() {
-
             String url = "http://localhost:8082/car/";
             RestTemplate restTemplate = new RestTemplate();
-            Car car = restTemplate.getForObject(url, Car.class);
-            return Car;
+            List<Car> listCar = restTemplate.getForObject(url, List.class);
+            return listCar;
     }
-
 
     //Récupérer une voiture par son Id
     @ApiOperation(value = "Récupère une voiture grâce à son ID à condition que celle-ci soit en stock")
-    @GetMapping(value="/Cars/{id}")
+    @GetMapping(value="/car/{id}")
     public Car afficherUneVoiture(@PathVariable int id) {
         String url = "http://localhost:8082/car/" + id;
         RestTemplate restTemplate = new RestTemplate();
         Car car = restTemplate.getForObject(url, Car.class);
         return car;
-
-
-
-
     }
 
-
-
-
-
-//    //ajouter un produit
-//    @PostMapping(value = "/Voitures")
-//    public void ajouterVoiture(@RequestBody Car car) {
-//        carDao.save(car);
-//    }
+    //ajouter un produit
+    @PostMapping(value = "/car")
+    public Car ajouterVoiture(@RequestBody Car postedCar) {
+        String url = "http://localhost:8082/car/";
+        RestTemplate restTemplate = new RestTemplate();
+        Car createdCar = restTemplate.postForObject(url,postedCar,Car.class);
+        return createdCar;
+    }
 }

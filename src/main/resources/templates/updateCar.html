@@ -15,7 +15,7 @@
    would be @{/edit.html}
    -->
 
-<form th:action="@{'/editCar/'+${carForm.id}}"
+<form th:action="@{'/updateCar/'+${carForm.id}}"
       th:object="${carForm}" method="POST">
     CarMaker:
     <input type="text" th:field="*{carMaker}" th:value="${carForm.carMaker}" />
@@ -24,7 +24,7 @@
     <input type="text" th:field="*{carModel}"  th:value="${carForm.carModel}"/>
     <br/>
 
-    <input type="submit" value="Create" />
+    <input type="submit" value="Update" />
 
 </form>
 

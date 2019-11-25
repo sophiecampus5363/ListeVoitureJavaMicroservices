@@ -89,7 +89,7 @@ public class CarController {
         return "addCar";
     }
 
-    @RequestMapping(value = { "/editCar/{id}" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/updateCar/{id}" }, method = RequestMethod.GET)
     public String carEdit(@PathVariable int id, Model model) {
         String url = "http://localhost:8082/car/"+id;
         RestTemplate restTemplate = new RestTemplate();
@@ -99,9 +99,9 @@ public class CarController {
         return "updateCar";
     }
 
-    @PutMapping(value = { "/editCar/{id}" })
+    @PostMapping(value = { "/updateCar/{id}" })
     public String editCar(Model model, //
-                           @ModelAttribute("carForm") CarForm carForm, @PathVariable int id) {
+                         @ModelAttribute("carForm") CarForm carForm, @PathVariable int id) {
 
         RestTemplate rt = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -113,14 +113,21 @@ public class CarController {
             car.setCarModel(carForm.getCarModel());
 
             HttpEntity<Car> request = new HttpEntity<Car>(car, headers);
-            String url = "http://localhost:8082/car/"+id;
-            rt.put(url, request, Car.class);
+            String url = "http://localhost:8082/car/"+ id;
 
             return "redirect:/carList";
         }
 
         model.addAttribute("errorMessage", errorMessage);
         return "addCar";
+    }
+
+    @DeleteMapping(value = "/car/{id}")
+    public String remove(@PathVariable Integer id) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8082/car/" + id;
+        restTemplate.delete(url);
+        return "carList";
     }
 
 

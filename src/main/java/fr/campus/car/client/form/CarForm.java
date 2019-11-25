@@ -4,8 +4,18 @@ public class CarForm {
 
     private String carMaker;
     private String carModel;
+    private int id;
 
-    public String getCarMaker() {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+        public String getCarMaker() {
         return carMaker;
     }
 

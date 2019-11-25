@@ -91,17 +91,16 @@ public class CarController {
 
     @RequestMapping(value = { "/editCar/{id}" }, method = RequestMethod.GET)
     public String carEdit(@PathVariable int id, Model model) {
-        String url = "http://localhost:8082/Voitures/"+id;
+        String url = "http://localhost:8082/car/"+id;
         RestTemplate restTemplate = new RestTemplate();
-        CarForm voitureForm = restTemplate.getForObject(url, CarForm.class);
-        model.addAttribute("carForm", voitureForm);
-
+        CarForm carForm = restTemplate.getForObject(url, CarForm.class);
+        model.addAttribute("carForm", carForm);
 
         return "updateCar";
     }
 
-    @PostMapping(value = { "/editCar/{id}" })
-    public String modifCar(Model model, //
+    @PutMapping(value = { "/editCar/{id}" })
+    public String editCar(Model model, //
                            @ModelAttribute("carForm") CarForm carForm, @PathVariable int id) {
 
         RestTemplate rt = new RestTemplate();

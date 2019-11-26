@@ -8,19 +8,44 @@
 <body>
 <h1>Car List</h1>
 <a href="addCar">Add a Car</a>
-<a href="updateCar">Edit a Car</a>
+
 <br/><br/>
 <div>
     <table border="1">
         <tr>
             <th>Car Maker</th>
             <th>Car Model</th>
+            <th>Options</th>
         </tr>
         <tr th:each ="car : ${cars}">
             <td th:utext="${car.carMaker}">...</td>
             <td th:utext="${car.carModel}">...</td>
+            <td>
+                <a th:href="@{'/updateCar/' + ${car.id}}">Show</a>
+
+                <a href="#" class="delete" th:data-link="@{'/car/' + ${car.id}}">Delete</a>
+            </td>
         </tr>
     </table>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+        $('.delete').on("click", (e) => {
+            e.preventDefault();
+            var link = $(e.target).data('link');
+            $.ajax({
+                url: link,
+                method: 'delete',
+                success: function () {
+                    location.reload();
+                }
+            })
+        })
+    </script>
+
+
+
+
 </body>
 </html>

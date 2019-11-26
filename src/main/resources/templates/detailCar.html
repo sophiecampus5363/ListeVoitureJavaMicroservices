@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Car List</h1>
-<a href="addcar">Add Car</a>
+<a th:href="@{'/updateCar/' + ${car.id}}">Edit a Car</a>
 <br/><br/>
 <div>
     <table border="1">
@@ -21,6 +21,8 @@
             <td th:utext="${car.carModel}">...</td>
         </tr>
     </table>
+
+
 </div>
 </body>
 </html>

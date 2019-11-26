@@ -114,7 +114,7 @@ public class CarController {
             car.setCarModel(carForm.getCarModel());
 
             HttpEntity<Car> request = new HttpEntity<Car>(car, headers);
-            String url = "http://localhost:8082/car/";
+            String url = "http://localhost:8082/car/" + id;
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.put(url, car);
             return "redirect:/carList";
@@ -125,10 +125,11 @@ public class CarController {
     }
 
     @DeleteMapping(value = "/car/{id}")
-    public String remove(@PathVariable Integer id) {
+    public String remove(@PathVariable int id) {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8082/car/" + id;
         restTemplate.delete(url);
+
         return "carList";
     }
 

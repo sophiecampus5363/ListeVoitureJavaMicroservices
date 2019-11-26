@@ -109,12 +109,14 @@ public class CarController {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         if (carForm != null) {
+            car.setId(id);
             car.setCarMaker(carForm.getCarMaker());
             car.setCarModel(carForm.getCarModel());
 
             HttpEntity<Car> request = new HttpEntity<Car>(car, headers);
-            String url = "http://localhost:8082/car/"+ id;
-
+            String url = "http://localhost:8082/car/";
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.put(url, car);
             return "redirect:/carList";
         }
 

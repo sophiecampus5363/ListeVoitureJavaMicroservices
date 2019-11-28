@@ -1,6 +1,10 @@
 package fr.campus.car.client.model;
 
+
+
 public class Car{
+
+
 
     private int id;
     private String carMaker;
@@ -10,11 +14,13 @@ public class Car{
 
     }
 
-    public Car(int id, String carMaker, String carModel) {
-        this.id=id;
-        this.carMaker = carMaker;
-        this.carModel = carModel;
-    }
+    public Car(int id, String carMaker, String carModel)
+        {
+            this.id = id;
+            this.carMaker = carMaker;
+            this.carModel = carModel;
+        }
+
 
     public int getId() { return id; }
 
